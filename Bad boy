@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Lucxy | Official Website & Mixtapes</title>
+    <style>
+        /* --- Root Variables & Reset --- */
+        :root {
+            --bg-primary: #0a0a0c;
+            --bg-secondary: #141519;
+            --card-bg: #1e1f26;
+            --accent-glow: #00f2fe;
+            --accent-purple: #4facfe;
+            --text-main: #f1f1f1;
+            --text-muted: #a0a0a6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- Navigation --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background: rgba(10, 10, 12, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--accent-glow), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-glow);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 6rem 1rem 4rem;
+            background: radial-gradient(circle at center, rgba(0,242,254,0.1) 0%, rgba(10,10,12,1) 70%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, var(--accent-glow), var(--accent-purple));
+            color: #000;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        /* --- Sections Layout --- */
+        section {
+            padding: 4rem 8%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 50%;
+            height: 3px;
+            background: var(--accent-glow);
+        }
+
+        /* --- Mixtapes Grid --- */
+        .mixtape-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .mixtape-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .mixtape-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .cover-art {
+            width: 100%;
+            height: 200px;
+            background-color: var(--bg-secondary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .mixtape-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .mixtape-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 0.5rem;
+            border-radius: 20px;
+        }
+
+        /* --- Contact / Booking --- */
+        .contact-container {
+            background-color: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--bg-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            border-radius: 6px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">DJ LUCXY</div>
+        <nav>
+            <a href="#mixtapes">Mixtapes</a>
+            <a href="#about">About</a>
+            <a href="#contact">Bookings</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>DJ LUCXY</h1>
+        <p>Official Mixes • Live Sets • Sound Waves</p>
+        <a href="#mixtapes" class="btn">Listen Now</a>
+    </section>
+
+    <section id="mixtapes">
+        <h2 class="section-title">Latest Mixtapes</h2>
+        <div class="mixtape-grid">
+
+            <div class="mixtape-card">
+                <div class="cover-art">Album Cover Placeholder 1</div>
+                <h3>Summer Vibe Mix Vol. 1</h3>
+                <p>An energetic blend of Afrobeat, Amapiano, and Club hits.</p>
+                <audio controls>
+                    <source src="your-mixtape-1.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="mixtape-card">
+                <div class="cover-art">Album Cover Placeholder 2</div>
+                <h3>Midnight Chill Mix</h3>
+                <p>Deep house vibes perfect for late night study or chill sessions.</p>
+                <audio controls>
+                    <source src="your-mixtape-2.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About DJ Lucxy</h2>
+        <p style="color: var(--text-muted); max-width: 700px;">
+            Welcome to the official hub for DJ Lucxy! Bringing heat to the turntables with high-energy mixes, seamless transitions, and diverse genres. Check out the latest tapes above and stay tuned for live show updates.
+        </p>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Bookings & Inquiries</h2>
+        <div class="contact-container">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <label>Message / Event Details</label>
+                    <textarea rows="4" placeholder="Tell me about your event..." required></textarea>
+                </div>
+                <button type="submit" class="btn" style="border: none; width: 100%; cursor: pointer;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 DJ Lucxy. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
