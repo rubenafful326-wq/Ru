@@ -1,14 +1,1548 @@
-*.tar
-*.tar.*
-*.jar
-*.exe
-*.msi
-*.deb
-*.zip
-*.tgz
-*.log
-*.log.*
-*.sig
+Absolutely — here is a more professional DJ LUCXY website with a black/red neon style, animated equalizer, music player, mixtape cards, download buttons, and a responsive mobile menu.
+I’ve made it as a single index.html file so it’s easy to test. You only need to add your own music and cover images.
+Writing
+DJ LUCXY — Professional Music Website
+Save the following as index.html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-pkg/
-src/
+    <title>DJ LUCXY | Official Website</title>
+
+    <meta
+        name="description"
+        content="Official website of DJ LUCXY. Listen to songs, mixtapes and download the latest music."
+    >
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050505;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =========================
+           VARIABLES
+        ========================== */
+
+        :root {
+            --red: #ff003c;
+            --red-light: #ff174f;
+            --dark: #050505;
+            --card: #111111;
+            --gray: #999;
+            --border: rgba(255, 0, 60, 0.25);
+        }
+
+
+        /* =========================
+           SCROLLBAR
+        ========================== */
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--red);
+            border-radius: 20px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid var(--border);
+
+            z-index: 9999;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--red);
+            text-shadow:
+                0 0 5px var(--red),
+                0 0 20px var(--red);
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--red);
+            text-shadow: 0 0 10px var(--red);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--red);
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            position: relative;
+            overflow: hidden;
+
+            padding: 120px 20px 80px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 40%,
+                    rgba(255, 0, 60, 0.22),
+                    transparent 35%
+                ),
+                #050505;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background: var(--red);
+
+            filter: blur(180px);
+
+            opacity: 0.12;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 900px;
+        }
+
+        .hero-small {
+            color: var(--red);
+
+            letter-spacing: 5px;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(65px, 13vw, 150px);
+
+            line-height: 0.9;
+
+            font-weight: 900;
+
+            letter-spacing: -5px;
+
+            text-shadow:
+                0 0 10px rgba(255, 0, 60, 0.3);
+        }
+
+        .hero h1 span {
+            color: var(--red);
+
+            text-shadow:
+                0 0 10px var(--red),
+                0 0 30px var(--red),
+                0 0 70px rgba(255, 0, 60, 0.7);
+        }
+
+        .hero-text {
+            max-width: 600px;
+
+            margin: 30px auto;
+
+            color: #bbb;
+
+            font-size: 18px;
+
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+
+            border-radius: 5px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+            border: 1px solid var(--red);
+        }
+
+        .btn-red {
+            background: var(--red);
+
+            box-shadow:
+                0 0 15px rgba(255, 0, 60, 0.4);
+        }
+
+        .btn-red:hover {
+            background: #fff;
+            color: var(--red);
+
+            box-shadow:
+                0 0 30px var(--red);
+        }
+
+        .btn-outline {
+            background: transparent;
+
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: var(--red);
+
+            box-shadow:
+                0 0 25px var(--red);
+        }
+
+
+        /* =========================
+           EQUALIZER
+        ========================== */
+
+        .equalizer {
+            position: absolute;
+
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+            height: 180px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: end;
+
+            gap: 5px;
+
+            opacity: 0.35;
+
+            overflow: hidden;
+        }
+
+        .bar {
+            width: 7px;
+
+            height: 30px;
+
+            background: var(--red);
+
+            box-shadow:
+                0 0 10px var(--red);
+
+            animation:
+                equalize 0.7s infinite alternate ease-in-out;
+        }
+
+        .bar:nth-child(2) {
+            animation-delay: .1s;
+        }
+
+        .bar:nth-child(3) {
+            animation-delay: .2s;
+        }
+
+        .bar:nth-child(4) {
+            animation-delay: .3s;
+        }
+
+        .bar:nth-child(5) {
+            animation-delay: .4s;
+        }
+
+        .bar:nth-child(6) {
+            animation-delay: .5s;
+        }
+
+        .bar:nth-child(7) {
+            animation-delay: .6s;
+        }
+
+        .bar:nth-child(8) {
+            animation-delay: .2s;
+        }
+
+        .bar:nth-child(9) {
+            animation-delay: .4s;
+        }
+
+        .bar:nth-child(10) {
+            animation-delay: .1s;
+        }
+
+        .bar:nth-child(11) {
+            animation-delay: .5s;
+        }
+
+        .bar:nth-child(12) {
+            animation-delay: .3s;
+        }
+
+        .bar:nth-child(13) {
+            animation-delay: .6s;
+        }
+
+        .bar:nth-child(14) {
+            animation-delay: .2s;
+        }
+
+        .bar:nth-child(15) {
+            animation-delay: .4s;
+        }
+
+        @keyframes equalize {
+            from {
+                height: 15px;
+            }
+
+            to {
+                height: 130px;
+            }
+        }
+
+
+        /* =========================
+           SECTION
+        ========================== */
+
+        .section {
+            padding: 110px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+
+            margin-bottom: 60px;
+        }
+
+        .section-title span {
+            display: block;
+
+            color: var(--red);
+
+            font-size: 12px;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 12px;
+
+            font-weight: bold;
+        }
+
+        .section-title h2 {
+            font-size: 45px;
+        }
+
+
+        /* =========================
+           MUSIC PLAYER
+        ========================== */
+
+        .player {
+            max-width: 950px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 260px 1fr;
+
+            gap: 30px;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #151515,
+                    #090909
+                );
+
+            border: 1px solid var(--border);
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 0 40px rgba(255, 0, 60, 0.08);
+        }
+
+        .player-cover {
+            width: 100%;
+            aspect-ratio: 1;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff003c,
+                    #25000c
+                );
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 70px;
+
+            box-shadow:
+                0 0 30px rgba(255, 0, 60, 0.25);
+        }
+
+        .player-cover img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: none;
+        }
+
+        .player-info {
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+        .now-playing {
+            color: var(--red);
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            font-weight: bold;
+        }
+
+        .player-info h3 {
+            font-size: 35px;
+
+            margin: 12px 0;
+        }
+
+        .player-info p {
+            color: var(--gray);
+
+            margin-bottom: 20px;
+        }
+
+        audio {
+            width: 100%;
+
+            accent-color: var(--red);
+        }
+
+        .player-download {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 13px 20px;
+
+            background: var(--red);
+
+            text-align: center;
+
+            border-radius: 5px;
+
+            font-weight: bold;
+        }
+
+        .player-download:hover {
+            background: white;
+
+            color: var(--red);
+        }
+
+
+        /* =========================
+           MIXTAPES
+        ========================== */
+
+        .dark-section {
+            background: #090909;
+        }
+
+        .mixtape-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(260px, 1fr));
+
+            gap: 25px;
+        }
+
+        .mixtape {
+            background: #111;
+
+            border: 1px solid #222;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            transition: 0.4s;
+        }
+
+        .mixtape:hover {
+            transform: translateY(-8px);
+
+            border-color: var(--red);
+
+            box-shadow:
+                0 15px 50px rgba(255, 0, 60, 0.15);
+        }
+
+        .mixtape-cover {
+            height: 280px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff003c,
+                    #20000a
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 65px;
+
+            position: relative;
+        }
+
+        .mixtape-cover img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: none;
+        }
+
+        .mixtape-number {
+            position: absolute;
+
+            top: 15px;
+            left: 15px;
+
+            background: rgba(0,0,0,.7);
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            color: #fff;
+        }
+
+        .mixtape-info {
+            padding: 22px;
+        }
+
+        .mixtape-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .mixtape-info p {
+            color: #888;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+        .download {
+            display: block;
+
+            text-align: center;
+
+            background: var(--red);
+
+            padding: 12px;
+
+            border-radius: 5px;
+
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        .download:hover {
+            background: white;
+
+            color: var(--red);
+        }
+
+
+        /* =========================
+           SONGS
+        ========================== */
+
+        .song-list {
+            max-width: 950px;
+
+            margin: auto;
+        }
+
+        .song {
+            display: grid;
+
+            grid-template-columns: 60px 1fr auto;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 18px;
+
+            margin-bottom: 10px;
+
+            background: #111;
+
+            border: 1px solid #1d1d1d;
+
+            border-radius: 8px;
+
+            transition: .3s;
+        }
+
+        .song:hover {
+            border-color: var(--red);
+
+            background: #151515;
+        }
+
+        .song-number {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #1d1d1d;
+
+            color: var(--red);
+
+            font-weight: bold;
+        }
+
+        .song h4 {
+            margin-bottom: 5px;
+        }
+
+        .song p {
+            color: #777;
+
+            font-size: 13px;
+        }
+
+        .song audio {
+            margin-top: 8px;
+
+            max-width: 400px;
+        }
+
+        .song-download {
+            padding: 10px 15px;
+
+            border: 1px solid var(--red);
+
+            color: var(--red);
+
+            border-radius: 5px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+        .song-download:hover {
+            background: var(--red);
+
+            color: white;
+
+            box-shadow:
+                0 0 15px rgba(255, 0, 60, .4);
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about {
+            max-width: 850px;
+
+            margin: auto;
+
+            text-align: center;
+        }
+
+        .about p {
+            color: #aaa;
+
+            font-size: 18px;
+
+            line-height: 1.9;
+        }
+
+
+        /* =========================
+           SOCIAL
+        ========================== */
+
+        .social {
+            text-align: center;
+
+            margin-top: 35px;
+        }
+
+        .social a {
+            display: inline-block;
+
+            margin: 7px;
+
+            padding: 12px 20px;
+
+            border: 1px solid #333;
+
+            border-radius: 5px;
+
+            color: #aaa;
+
+            transition: .3s;
+        }
+
+        .social a:hover {
+            color: white;
+
+            border-color: var(--red);
+
+            background: var(--red);
+
+            box-shadow:
+                0 0 20px rgba(255, 0, 60, .3);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            padding: 50px 20px;
+
+            text-align: center;
+
+            border-top: 1px solid #1c1c1c;
+
+            color: #666;
+        }
+
+        footer strong {
+            color: var(--red);
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 768px) {
+
+            header {
+                padding: 0 5%;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+
+                top: 75px;
+                left: 0;
+
+                width: 100%;
+
+                display: none;
+
+                flex-direction: column;
+
+                gap: 0;
+
+                background: rgba(5,5,5,.98);
+
+                border-bottom: 1px solid var(--border);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 18px 25px;
+
+                border-bottom: 1px solid #1c1c1c;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+
+            .section {
+                padding: 80px 5%;
+            }
+
+            .section-title h2 {
+                font-size: 35px;
+            }
+
+            .player {
+                grid-template-columns: 1fr;
+
+                padding: 20px;
+            }
+
+            .player-cover {
+                max-width: 280px;
+
+                margin: auto;
+            }
+
+            .player-info h3 {
+                font-size: 27px;
+            }
+
+            .song {
+                grid-template-columns: 45px 1fr;
+            }
+
+            .song-download {
+                grid-column: 2;
+                text-align: center;
+            }
+
+            .song audio {
+                max-width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<header>
+
+    <a href="#home" class="logo">
+        DJ <span>LUCXY</span>
+    </a>
+
+    <div class="menu-btn" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <nav id="nav">
+
+        <a href="#home" onclick="closeMenu()">Home</a>
+
+        <a href="#music" onclick="closeMenu()">Music</a>
+
+        <a href="#mixtapes" onclick="closeMenu()">Mixtapes</a>
+
+        <a href="#about" onclick="closeMenu()">About</a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-small">
+            OFFICIAL WEBSITE
+        </div>
+
+        <h1>
+            DJ <span>LUCXY</span>
+        </h1>
+
+        <p class="hero-text">
+            Feel the sound. Experience the energy.
+            Listen to the latest songs, mixes and mixtapes
+            from DJ LUCXY.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#music" class="btn btn-red">
+                ▶ LISTEN NOW
+            </a>
+
+            <a href="#mixtapes" class="btn btn-outline">
+                DOWNLOAD MIXTAPES
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ANIMATED EQUALIZER -->
+
+    <div class="equalizer">
+
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FEATURED MUSIC
+========================== -->
+
+<section class="section" id="music">
+
+    <div class="section-title">
+
+        <span>NOW PLAYING</span>
+
+        <h2>Featured Music</h2>
+
+    </div>
+
+
+    <div class="player">
+
+        <div class="player-cover">
+
+            <!--
+            TO USE YOUR OWN COVER:
+            1. Put your image in the images folder.
+            2. Change the src below.
+            3. Change display:none to display:block.
+            -->
+
+            🎧
+
+            <!--
+            <img src="images/featured.jpg" alt="DJ LUCXY">
+            -->
+
+        </div>
+
+
+        <div class="player-info">
+
+            <span class="now-playing">
+                DJ LUCXY • LATEST RELEASE
+            </span>
+
+            <h3>
+                My Latest Song
+            </h3>
+
+            <p>
+                Listen to the latest release from DJ LUCXY.
+            </p>
+
+
+            <!--
+            IMPORTANT:
+            Put your actual MP3 file in:
+            music/latest-song.mp3
+            -->
+
+            <audio controls>
+
+                <source
+                    src="music/latest-song.mp3"
+                    type="audio/mpeg">
+
+                Your browser does not support audio.
+
+            </audio>
+
+
+            <a
+                class="player-download"
+                href="music/latest-song.mp3"
+                download="DJ-LUCXY-Latest-Song.mp3">
+
+                ⬇ DOWNLOAD SONG
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     MIXTAPES
+========================== -->
+
+<section class="section dark-section" id="mixtapes">
+
+    <div class="section-title">
+
+        <span>DJ LUCXY PRESENTS</span>
+
+        <h2>Latest Mixtapes</h2>
+
+    </div>
+
+
+    <div class="mixtape-grid">
+
+
+        <!-- MIXTAPE 1 -->
+
+        <div class="mixtape">
+
+            <div class="mixtape-cover">
+
+                🎵
+
+                <!--
+                Replace the emoji with your cover:
+
+                <img
+                    src="images/mixtape-1.jpg"
+                    alt="DJ LUCXY Mixtape 1">
+                -->
+
+                <div class="mixtape-number">
+                    MIXTAPE 01
+                </div>
+
+            </div>
+
+
+            <div class="mixtape-info">
+
+                <h3>
+                    DJ LUCXY MIXTAPE VOL. 1
+                </h3>
+
+                <p>
+                    The first official DJ LUCXY mixtape.
+                    Turn up the volume and enjoy.
+                </p>
+
+                <a
+                    class="download"
+                    href="music/mixtape-1.mp3"
+                    download="DJ-LUCXY-Mixtape-Vol-1.mp3">
+
+                    ⬇ DOWNLOAD
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MIXTAPE 2 -->
+
+        <div class="mixtape">
+
+            <div class="mixtape-cover">
+
+                🔥
+
+                <div class="mixtape-number">
+                    MIXTAPE 02
+                </div>
+
+            </div>
+
+
+            <div class="mixtape-info">
+
+                <h3>
+                    DJ LUCXY MIXTAPE VOL. 2
+                </h3>
+
+                <p>
+                    Another high-energy mix packed
+                    with your favourite sounds.
+                </p>
+
+                <a
+                    class="download"
+                    href="music/mixtape-2.mp3"
+                    download="DJ-LUCXY-Mixtape-Vol-2.mp3">
+
+                    ⬇ DOWNLOAD
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MIXTAPE 3 -->
+
+        <div class="mixtape">
+
+            <div class="mixtape-cover">
+
+                🎧
+
+                <div class="mixtape-number">
+                    MIXTAPE 03
+                </div>
+
+            </div>
+
+
+            <div class="mixtape-info">
+
+                <h3>
+                    DJ LUCXY PARTY MIX
+                </h3>
+
+                <p>
+                    The ultimate party mix from
+                    DJ LUCXY.
+                </p>
+
+                <a
+                    class="download"
+                    href="music/party-mix.mp3"
+                    download="DJ-LUCXY-Party-Mix.mp3">
+
+                    ⬇ DOWNLOAD
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     SONGS
+========================== -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <span>DJ LUCXY MUSIC</span>
+
+        <h2>Latest Songs</h2>
+
+    </div>
+
+
+    <div class="song-list">
+
+
+        <!-- SONG 1 -->
+
+        <div class="song">
+
+            <div class="song-number">
+                01
+            </div>
+
+            <div>
+
+                <h4>
+                    My Latest Song
+                </h4>
+
+                <p>
+                    DJ LUCXY
+                </p>
+
+                <audio controls>
+
+                    <source
+                        src="music/song-1.mp3"
+                        type="audio/mpeg">
+
+                </audio>
+
+            </div>
+
+            <a
+                class="song-download"
+                href="music/song-1.mp3"
+                download="DJ-LUCXY-Song-1.mp3">
+
+                DOWNLOAD
+
+            </a>
+
+        </div>
+
+
+
+        <!-- SONG 2 -->
+
+        <div class="song">
+
+            <div class="song-number">
+                02
+            </div>
+
+            <div>
+
+                <h4>
+                    Another Banger
+                </h4>
+
+                <p>
+                    DJ LUCXY
+                </p>
+
+                <audio controls>
+
+                    <source
+                        src="music/song-2.mp3"
+                        type="audio/mpeg">
+
+                </audio>
+
+            </div>
+
+            <a
+                class="song-download"
+                href="music/song-2.mp3"
+                download="DJ-LUCXY-Song-2.mp3">
+
+                DOWNLOAD
+
+            </a>
+
+        </div>
+
+
+
+        <!-- SONG 3 -->
+
+        <div class="song">
+
+            <div class="song-number">
+                03
+            </div>
+
+            <div>
+
+                <h4>
+                    Latest Vibes
+                </h4>
+
+                <p>
+                    DJ LUCXY
+                </p>
+
+                <audio controls>
+
+                    <source
+                        src="music/song-3.mp3"
+                        type="audio/mpeg">
+
+                </audio>
+
+            </div>
+
+            <a
+                class="song-download"
+                href="music/song-3.mp3"
+                download="DJ-LUCXY-Song-3.mp3">
+
+                DOWNLOAD
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT
+========================== -->
+
+<section class="section dark-section" id="about">
+
+    <div class="about">
+
+        <div class="section-title">
+
+            <span>ABOUT THE DJ</span>
+
+            <h2>DJ LUCXY</h2>
+
+        </div>
+
+
+        <p>
+
+            Welcome to the official home of DJ LUCXY.
+
+            Discover the latest songs, exclusive mixes
+            and new mixtapes. Listen online and download
+            your favourite music.
+
+        </p>
+
+
+        <div class="social">
+
+            <!-- Replace these with your real pages -->
+
+            <a href="#" target="_blank">
+                Instagram
+            </a>
+
+            <a href="#" target="_blank">
+                TikTok
+            </a>
+
+            <a href="#" target="_blank">
+                YouTube
+            </a>
+
+            <a href="#" target="_blank">
+                Facebook
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <p>
+        © 2026 <strong>DJ LUCXY</strong>.
+        All Rights Reserved.
+    </p>
+
+    <p style="margin-top:10px;">
+        Music • Mixtapes • Entertainment
+    </p>
+
+</footer>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+    /* MOBILE MENU */
+
+    function toggleMenu() {
+
+        const nav = document.getElementById("nav");
+
+        nav.classList.toggle("active");
+
+    }
+
+
+    function closeMenu() {
+
+        const nav = document.getElementById("nav");
+
+        nav.classList.remove("active");
+
+    }
+
+
+    /* STOP MULTIPLE SONGS PLAYING */
+
+    const players = document.querySelectorAll("audio");
+
+    players.forEach(player => {
+
+        player.addEventListener("play", () => {
+
+            players.forEach(otherPlayer => {
+
+                if (otherPlayer !== player) {
+
+                    otherPlayer.pause();
+
+                }
+
+            });
+
+        });
+
+    });
+
+
+</script>
+
+
+</body>
+</html>
